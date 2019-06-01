@@ -10,7 +10,8 @@ import cv2
 import time
 import os
 import send_email
-
+import sys
+import urllib.request as urllib
 
 class HumanDetector:
     def __init__(self, path_to_ckpt):
@@ -63,16 +64,31 @@ class HumanDetector:
         self.sess.close()
         self.default_graph.close()
 
+    def url_to_image(self):
+        # download the image, convert it to a NumPy array, 
+        # and then read it into OpenCV format
+        resp = urllib.urlopen('http://192.168.43.20:8080/shot.jpg')
+        image = np.asarray(bytearray(resp.read()), dtype="uint8")
+        image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+    	
+        # return the image
+        return image
+
 if __name__ == "__main__":
     model_path = 'ssd_mobilenet_v1_coco_11_06_2017/frozen_inference_graph.pb'
     odapi = HumanDetector(path_to_ckpt=model_path)
     threshold = 0.7
     cap = cv2.VideoCapture(0)
     c=0
-    while True:
-        r, img = cap.read()
-        img = cv2.resize(img, (1280, 720))
+    phone_cam = True if (len(sys.argv[0:]) > 1 and sys.argv[1] == 'phone') else False
 
+    while True:
+        if phone_cam:
+            img = odapi.url_to_image()
+        else:
+            r, img = cap.read()
+        
+        img = cv2.resize(img, (1280, 720))
         boxes, scores, classes, num = odapi.processFrame(img)
 
         # Visualization of the results of a detection.
