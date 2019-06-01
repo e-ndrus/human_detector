@@ -1,6 +1,6 @@
 # human_detector
 
-Human detector using Tensorflow and pretrained SSD Inception v2 (COCO). The script detects only human objects, waits for a specified period and then emits a sound alarm and/or sends an email with a picture of a detected person.
+Human detector using Tensorflow and pretrained SSD MobileNet v1 (COCO). The script detects only human objects, waits for a specified period and then emits a sound alarm and/or sends an email with a picture of a detected person.
 
 For alarm to work on Linux, you'll need sudo apt install sox
 You'll also need to set up your app password in your Google account if you would like to use Gmail. More on this here: https://support.google.com/accounts/answer/185833?hl=en
