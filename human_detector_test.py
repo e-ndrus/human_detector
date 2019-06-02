@@ -64,15 +64,27 @@ class HumanDetector:
         self.sess.close()
         self.default_graph.close()
 
-    def url_to_image(self):
+    def url_to_image(self, ip_webcam):
+        # for this option to work, you need an IP Webcam installed on your phone
+        # tested on Android
         # download the image, convert it to a NumPy array, 
         # and then read it into OpenCV format
-        resp = urllib.urlopen('http://192.168.43.20:8080/shot.jpg')
+        resp = urllib.urlopen(f'http://{ip_webcam}/shot.jpg')
         image = np.asarray(bytearray(resp.read()), dtype="uint8")
         image = cv2.imdecode(image, cv2.IMREAD_COLOR)
     	
         # return the image
         return image
+
+    def validIP(self, address):
+        # check if provided argument is a valid IP address
+        parts = address.split(".")
+        if len(parts) != 4:
+            return False
+        for item in parts:
+            if not 0 <= int(item) <= 255:
+                return False
+        return True
 
 if __name__ == "__main__":
     model_path = 'ssd_mobilenet_v1_coco_11_06_2017/frozen_inference_graph.pb'
@@ -84,7 +96,8 @@ if __name__ == "__main__":
 
     while True:
         if phone_cam:
-            img = odapi.url_to_image()
+            ip = sys.argv[2] if (len(sys.argv) >= 2) else "192.168.43.20:8080"
+            img = odapi.url_to_image(ip)
         else:
             r, img = cap.read()
         
