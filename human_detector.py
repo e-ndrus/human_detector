@@ -76,16 +76,6 @@ class HumanDetector:
         # return the image
         return image
 
-    def validIP(self, address):
-        # check if provided argument is a valid IP address
-        parts = address.split(".")
-        if len(parts) != 4:
-            return False
-        for item in parts:
-            if not 0 <= int(item) <= 255:
-                return False
-        return True
-
 if __name__ == "__main__":
     model_path = 'ssd_mobilenet_v1_coco_11_06_2017/frozen_inference_graph.pb'
     odapi = HumanDetector(path_to_ckpt=model_path)
