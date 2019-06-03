@@ -102,6 +102,9 @@ if __name__ == "__main__":
                 cv2.rectangle(img,(box[1],box[0]),(box[3],box[2]),(255,0,0),2)
                 print(c, 'Person detected')
                 c+=1
+            else:
+                if c > 50:
+                    c = 0
         if c==50:
             duration = 2  # seconds
             freq = 440  # Hz
