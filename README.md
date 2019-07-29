@@ -10,7 +10,7 @@ Or if you want to receive input from your phone, start it with the following arg
 python human_detector_test.py phone your_IP
 
 For alarm to work on Linux, you'll need sudo apt install sox
-You'll also need to set up your app password in your Google account if you would like to use Gmail. More on this here: https://support.google.com/accounts/answer/185833?hl=en
+You'll also need to set up your app password in your Google account if you would like to use Gmail. More on this here: https://support.google.com/accounts/answer/185833?hl=en.
 
 Code adapted from Tensorflow Object Detection Framework
 https://github.com/tensorflow/models/blob/master/research/object_detection/object_detection_tutorial.ipynb
