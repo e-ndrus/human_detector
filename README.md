@@ -4,7 +4,7 @@ Human detector using Tensorflow and pretrained SSD MobileNet v1 (COCO). The scri
 
 The input can come either from a webcam or your phone. If you would like to receive video input from your phone, you need an IP Webcam installed on your phone.
 
-To start the script with an ordinary webcam, run python human_detector_test.py
+To start the script with an ordinary webcam, run python human_detector_test.py.
 
 Or if you want to receive input from your phone, start it with the following arguments:
 python human_detector_test.py phone your_IP
