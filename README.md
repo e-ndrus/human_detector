@@ -1,4 +1,4 @@
-# human_detector V2
+# human_detector Branch 2
 
 Human detector using Tensorflow and pretrained SSD MobileNet v1 (COCO). The script detects only human objects, waits for a specified period and then emits a sound alarm and/or sends an email with a picture of a detected person.
 
